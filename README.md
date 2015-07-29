@@ -17,6 +17,10 @@ zed-compare.py -a -b -o [-cgr] [-cgc] [-chgr] [-chgc] [-chhr] [-chhc]
 
 
 The pipeline read the file line by line with the information divided by tabs (\t)
+The pipeline requires the input file to have the following format:
+- Chromosome name at the first block
+- Start location on the second block
+- End location on the third block
 
 optional arguments:
     These arguments will only be used if the input file is in a different format
@@ -31,6 +35,7 @@ optional arguments:
 
 
 ```
+
 
 
 # Output
