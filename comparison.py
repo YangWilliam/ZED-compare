@@ -66,17 +66,29 @@ def main():
     parser.add_argument('-a',required = True,help="First file for comparison")
     parser.add_argument('-b',required = True,help="Second File for comparison")
     parser.add_argument('-o',required = True,help="The Output Name")
+    parser.add_argument('-cgr',default=3,type=int,help="location of the methylation ratio for CG methylation")
+    parser.add_argument('-cgc',default=5,type=int,help="location of the methylation count for CG methylation")
+    parser.add_argument('-chgr',default=6,type=int,help="location of the methylation ratio for CHG methylation")
+    parser.add_argument('-chgc',default=8,type=int,help="location of the methylation count for CHG methylation")
+    parser.add_argument('-chhr',default=9,type=int,help="location of the methylation ratio for CHH methylation")
+    parser.add_argument('-chhc',default=11,type=int,help="location of the methylation count for CHH methylation")
     args = parser.parse_args()
     inputFile1 = args.a
     inputFile2 = args.b
     outputFile = args.o
+    cg1 = args.cgr
+    cg2 = args.cgc
+    chg1 = args.chgr
+    chg2 = args.chgc
+    chh1 = args.chhr
+    chh2 = args.chhc
     content1 = open(inputFile1,"r")
     content2 = open(inputFile2,"r")
     next(content1)
     next(content2)
-    CG = comparator(outputFile+"_CG.bed",3,5,False)
-    CHG = comparator(outputFile+"_CHG.bed",6,8,False)
-    CHH = comparator(outputFile+"_CHH.bed",9,11,True)
+    CG = comparator(outputFile+"_CG.bed",cg1,cg2,False)
+    CHG = comparator(outputFile+"_CHG.bed",chg1,chg2,False)
+    CHH = comparator(outputFile+"_CHH.bed",chh1,chh2,True)
     #counter = 0
     for line1,line2 in izip(content1,content2):
         line1 = line1.rstrip('\n')
